@@ -7,8 +7,8 @@ import {searchLyrics} from '../action-creators/lyrics';
 
 const LyricsContainer = class extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       artistQuery: '',
@@ -28,7 +28,7 @@ const LyricsContainer = class extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.artistQuery && this.state.songQuery) {
-      store.dispatch(searchLyrics(this.state.artistQuery, this.state.songQuery));
+      this.props.handleSubmit(this.state.artistQuery, this.state.songQuery);
     }
   }
 
@@ -36,7 +36,9 @@ const LyricsContainer = class extends Component {
     return (
       <Lyrics
         {...this.state}
+        {...this.props}
         handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
       />
     );
   }
@@ -51,13 +53,13 @@ export default connect(
   (dispatch, ownProps) => {
     console.log(ownProps);
     return {
-      handleSubmit: event => {
-        dispatch(ownProps.handleSubmit(event));
-      },
-      handleChange: (type, value) => {
-        dispatch(ownProps.handleChange(type, value));
+      handleSubmit: (artist, song) => {
+        dispatch(searchLyrics(artist, song));
       }
+      // handleChange: (type, value) => {
+      //   dispatch(ownProps.handleChange(type, value));
+      // }
     };
   }
-)(Lyrics);
+)(LyricsContainer);
 
