@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function (props) {
+export default props => {
 
   const artistChange = e => {
     props.handleChange('artist', e.target.value);

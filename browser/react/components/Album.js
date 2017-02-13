@@ -1,7 +1,7 @@
 import React from 'react';
 import Songs from '../components/Songs';
 
-export default function (props) {
+export default props => {
 
   const album = props.selectedAlbum;
   const currentSong = props.currentSong;

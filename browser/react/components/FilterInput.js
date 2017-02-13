@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FilterInput = function (props) {
+export default props => {
 
   const handleChange = props.handleChange;
   const inputValue = props.inputValue;
@@ -16,5 +16,3 @@ const FilterInput = function (props) {
     </form>
   )
 };
-
-export default FilterInput;

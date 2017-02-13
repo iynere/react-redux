@@ -27,9 +27,7 @@ import Albums from '../components/Albums';
 // }
 
 export default connect(
-	state => {
-		return {
-			albums: state.albums.list
-		};
-	}
+	state => ({
+		albums: state.albums.list
+	})
 )(Albums);

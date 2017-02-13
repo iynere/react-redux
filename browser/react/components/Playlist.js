@@ -2,7 +2,7 @@ import React from 'react';
 import Songs from './Songs';
 import AddSongContainer from '../containers/AddSongContainer';
 
-export default function (props) {
+export default props => {
 
   const playlist = props.selectedPlaylist;
 

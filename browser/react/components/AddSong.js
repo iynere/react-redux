@@ -1,7 +1,7 @@
 import React from 'react';
 import Songs from './Songs';
 
-export default function (props) {
+export default props => {
 
   const songs = props.songs;
   const error = props.error;
