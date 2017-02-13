@@ -42,8 +42,8 @@ const LyricsContainer = class extends Component {
       />
     );
   }
-
 }
+
 export default connect(
   (state, ownProps) => ({
     text: state.lyrics.text,
@@ -56,10 +56,6 @@ export default connect(
       handleSubmit: (artist, song) => {
         dispatch(searchLyrics(artist, song));
       }
-      // handleChange: (type, value) => {
-      //   dispatch(ownProps.handleChange(type, value));
-      // }
     };
   }
 )(LyricsContainer);
-

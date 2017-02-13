@@ -17,8 +17,6 @@ export default connect(
   })
 )(Playlist);
 
-
-
 // export default class extends Component {
 
 //   constructor() {

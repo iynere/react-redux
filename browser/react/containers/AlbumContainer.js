@@ -4,7 +4,6 @@ import Album from '../components/Album';
 import { toggleSong } from '../action-creators/player';
 import { connect } from 'react-redux';
 
-
 export default connect(
   state => ({
     selectedAlbum: state.albums.selected,
@@ -17,8 +16,6 @@ export default connect(
     }
   })
 )(Album);
-
-
 
 // export default class extends Component {
 
