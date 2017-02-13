@@ -1,37 +1,53 @@
 import React, {Component} from 'react';
-import store from '../store';
+// import store from '../store';
 import Playlist from '../components/Playlist';
-import {toggleSong} from '../action-creators/player';
+import { toggleSong } from '../action-creators/player';
+import { connect } from 'react-redux';
 
-export default class extends Component {
+export default connect(
+  state => ({
+    currentSong: state.player.currentSong,
+    isPlaying: state.player.isPlaying,
+    selectedPlaylist: state.playlists.selected
+  }),
+  dispatch => ({
+    toggleOne: (song, list) => {
+      dispatch(toggleSong(song, list));
+    }
+  })
+)(Playlist);
 
-  constructor() {
-    super();
-    this.state = store.getState();
-  }
 
-  componentDidMount() {
-    this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState());
-    });
-  }
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
+// export default class extends Component {
 
-  toggle(song, list) {
-    store.dispatch(toggleSong(song, list));
-  }
+//   constructor() {
+//     super();
+//     this.state = store.getState();
+//   }
 
-  render() {
-    return (
-      <Playlist
-        {...this.state.player}
-        selectedPlaylist={this.state.playlists.selected}
-        toggleOne={this.toggle}
-      />
-    );
-  }
+//   componentDidMount() {
+//     this.unsubscribe = store.subscribe(() => {
+//       this.setState(store.getState());
+//     });
+//   }
 
-}
+//   componentWillUnmount() {
+//     this.unsubscribe();
+//   }
+
+//   toggle(song, list) {
+//     store.dispatch(toggleSong(song, list));
+//   }
+
+//   render() {
+//     return (
+//       <Playlist
+//         {...this.state.player}
+//         selectedPlaylist={this.state.playlists.selected}
+//         toggleOne={this.toggle}
+//       />
+//     );
+//   }
+
+// }

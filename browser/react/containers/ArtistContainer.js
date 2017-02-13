@@ -26,6 +26,7 @@ import {toggleSong} from '../action-creators/player';
 //   }
 
 //   render() {
+// 	console.log('children: ', this.props.children);
 //     return (
 //       <Artist
 //         {...this.state.player}
@@ -38,9 +39,12 @@ import {toggleSong} from '../action-creators/player';
 // }
 
 export default connect(
-	state => {
-		return Object.assign({}, state.player, {
-			selectedArtist: state.artists.selected
+	(state, ownProps) => {
+		return Object.assign({}, {
+			selectedArtist: state.artists.selected,
+			currentSong: state.player.currentSong,
+			isPlaying: state.player.isPlaying,
+			children: ownProps.children.props.children
 		});
 	},
 	dispatch => {

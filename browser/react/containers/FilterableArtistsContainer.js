@@ -18,7 +18,7 @@ const FilterableArtistsContainer = class extends React.Component {
 
 	render() {
 		const inputValue = this.state.inputValue;
-		const filteredArtists = props.artists.list.filter(artist => artist.name.match(inputValue));
+		const filteredArtists = this.props.artists.list.filter(artist => artist.name.match(inputValue));
 
 		return (
 			<div>
@@ -26,7 +26,7 @@ const FilterableArtistsContainer = class extends React.Component {
 					handleChange={this.handleChange}
 					inputValue={inputValue}
 				/>
-				<Artists artists={filteredArtists}/>
+				<Artists artists={filteredArtists} />
 			</div>
 		);
 	}

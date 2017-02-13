@@ -1,29 +1,22 @@
 import React, {Component} from 'react';
 import store from '../store';
 import Lyrics from '../components/Lyrics';
+import { connect } from 'react-redux';
 
 import {searchLyrics} from '../action-creators/lyrics';
 
-export default class extends Component {
+const LyricsContainer = class extends Component {
 
   constructor() {
-
     super();
 
-    this.state = Object.assign({
+    this.state = {
       artistQuery: '',
       songQuery: ''
-    }, store.getState().lyrics);
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-  }
-
-  componentDidMount() {
-    this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().lyrics);
-    });
   }
 
   handleChange(type, value) {
@@ -39,17 +32,32 @@ export default class extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
   render() {
     return (
       <Lyrics
         {...this.state}
         handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit} />
+      />
     );
   }
 
 }
+export default connect(
+  (state, ownProps) => ({
+    text: state.lyrics.text,
+    artistQuery: ownProps.artistQuery,
+    songQuery: ownProps.songQuery
+  }),
+  (dispatch, ownProps) => {
+    console.log(ownProps);
+    return {
+      handleSubmit: event => {
+        dispatch(ownProps.handleSubmit(event));
+      },
+      handleChange: (type, value) => {
+        dispatch(ownProps.handleChange(type, value));
+      }
+    };
+  }
+)(Lyrics);
+

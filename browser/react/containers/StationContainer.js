@@ -9,8 +9,9 @@ import {convertSong} from '../utils';
 const mapStateToProps = (state, ownProps) => {
 	const songs = state.playlists.songs,
 		currentSong = state.player.currentSong,
-		currentStation = ownProps.routeParams.station;
-	
+		currentStation = ownProps.params.station;
+
+
 	return {
 		songs: songs
 			.filter(song => song.genre === currentStation)

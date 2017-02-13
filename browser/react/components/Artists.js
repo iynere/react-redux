@@ -11,6 +11,7 @@ export default props => {
       <div className="list-group">
         {
           artists.map(artist => {
+            console.log(artist);
             return (
               <div className="list-group-item" key={artist.id}>
                 <Link to={`/artists/${artist.id}`}>{ artist.name }</Link>

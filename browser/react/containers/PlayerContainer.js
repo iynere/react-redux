@@ -3,6 +3,7 @@ import AUDIO from '../audio';
 import store from '../store';
 import {previous, next, setProgress, toggleSong} from '../action-creators/player';
 import Player from '../components/Player';
+import { connect } from 'react-redux';
 
 export default class extends Component {
 
